@@ -1,3 +1,4 @@
+# Mini guida per l'utilizzo di CQL Shell (cqlsh)
 # Creazione keyspace
 
 CREATE KEYSPACE chatsandra WITH REPLICATION = {'class': 'SimpleStrategy', 'replication_factor': 3};

@@ -1,3 +1,4 @@
+# Mini guida per l'utilizzo di CQL Shell (cqlsh)
 # Inserimento
 
 INSERT INTO users (
