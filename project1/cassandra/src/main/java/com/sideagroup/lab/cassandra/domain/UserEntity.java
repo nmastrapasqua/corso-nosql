@@ -22,6 +22,10 @@ public class UserEntity {
     @CassandraType(type = CassandraType.Name.UUID)
     private UUID user_id;
 
+    public UserEntity() {
+        this.user_id = UUID.randomUUID();
+    }
+
     public String getEmail() {
         return email;
     }

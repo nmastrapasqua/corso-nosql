@@ -103,4 +103,13 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @Operation(summary = "Deletes all users")
+    @ApiResponse(responseCode = "204", description = "Users was successful deleted",
+            content = @Content(schema = @Schema(implementation = Void.class)))
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAll() {
+        userRepository.deleteAll();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

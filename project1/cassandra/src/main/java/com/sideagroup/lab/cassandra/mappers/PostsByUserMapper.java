@@ -11,11 +11,11 @@ public class PostsByUserMapper {
     public PostsByUserEntity toEntity(PostsByUser dto) {
         PostsByUserEntityKey key = new PostsByUserEntityKey();
         key.setUserId(dto.getUserId());
-        key.setPostId(dto.getPostId());
+        if (dto.getPostId() != null)
+            key.setPostId(dto.getPostId());
 
         PostsByUserEntity entity = new PostsByUserEntity();
-        entity.getKey().setUserId(dto.getUserId());
-        entity.getKey().setPostId(dto.getPostId());
+        entity.setKey(key);
         entity.setText(dto.getText());
         entity.setRoom_id(dto.getRoomId());
 

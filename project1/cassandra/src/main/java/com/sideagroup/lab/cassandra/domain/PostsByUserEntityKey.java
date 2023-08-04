@@ -1,5 +1,6 @@
 package com.sideagroup.lab.cassandra.domain;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.CassandraType;
@@ -20,6 +21,11 @@ public class PostsByUserEntityKey implements Serializable {
     @PrimaryKeyColumn(name = "post_id", ordinal = 1, type = PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
     @CassandraType(type = CassandraType.Name.TIMEUUID)
     private UUID postId;
+
+    public PostsByUserEntityKey() {
+        this.userId = Uuids.random();
+        this.postId = Uuids.timeBased();
+    }
 
     public UUID getUserId() {
         return userId;
