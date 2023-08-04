@@ -1,9 +1,7 @@
 package com.sideagroup.lab.cassandra.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.CassandraType;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
@@ -11,8 +9,7 @@ import java.util.UUID;
 @Table(value = "users")
 public class UserEntity {
 
-    @Id
-    @PrimaryKeyColumn(name = "email", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
+    @PrimaryKey
     @CassandraType(type = CassandraType.Name.TEXT)
     private String email;
 
