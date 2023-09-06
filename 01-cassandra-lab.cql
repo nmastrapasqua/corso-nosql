@@ -143,3 +143,11 @@ VALUES (
         'Secondo' : 'Grigliata mista di carne'
     }
 );
+
+UPDATE food_menu
+SET menu_items = menu_items + {'Dolce' : 'Tiramisù'} 
+WHERE order_id = 1; 
+
+UPDATE food_menu
+SET menu_items = menu_items + {'Dolce' : 'Zuppa inglese'} 
+WHERE order_id = 1; 
