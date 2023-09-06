@@ -1,6 +1,6 @@
 -- ==================================================================
--- Creazione delle tabelle per 'project1'
--- SpringBoot + Cassandra
+-- Progetto SpringBoot + Cassandra
+-- Creazione tabelle
 -- ==================================================================
 
 USE chatsandra;
