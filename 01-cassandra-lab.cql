@@ -151,3 +151,93 @@ WHERE order_id = 1;
 UPDATE food_menu
 SET menu_items = menu_items + {'Dolce' : 'Zuppa inglese'} 
 WHERE order_id = 1; 
+
+-- ================================================================================================
+-- L'arte di modellare i dati
+-- ================================================================================================
+CREATE TABLE IF NOT EXISTS comments_by_user(
+    userid uuid,
+    commentid timeuuid,
+    videoid uuid,
+    comment text,
+    PRIMARY KEY ((userid), commentid)
+) WITH CLUSTERING ORDER BY (commentid DESC);
+
+CREATE TABLE IF NOT EXISTS comments_by_video(
+    videoid uuid,
+    commentid timeuuid,
+    userid uuid,
+    comment text,
+    PRIMARY KEY ((videoid), commentid)
+) WITH CLUSTERING ORDER BY (commentid DESC);
+
+-- Commento 1
+-- Tool utile: https://www.uuidtools.com/generate/v1
+-- ========================
+BEGIN BATCH
+INSERT INTO comments_by_user
+(
+    userid, 
+    commentid, 
+    videoid, 
+    comment
+) 
+VALUES 
+(
+    5aaf007f-d05e-4ef6-8dc0-b56c68181176, 
+    7ff328ae-56fb-11ee-8f6f-325096b39f47, 
+    d3abfbff-e348-468f-a458-b04f2ca98374,
+    'Commento 1'
+);
+INSERT INTO comments_by_video
+(
+    videoid, 
+    commentid, 
+    userid, 
+    comment
+) 
+VALUES 
+(
+    d3abfbff-e348-468f-a458-b04f2ca98374,
+    7ff328ae-56fb-11ee-8f6f-325096b39f47,
+    5aaf007f-d05e-4ef6-8dc0-b56c68181176,
+    'Commento 1'
+);
+APPLY BATCH;
+
+-- Commento 2
+-- ========================
+BEGIN BATCH
+INSERT INTO comments_by_user
+(
+    userid, 
+    commentid, 
+    videoid, 
+    comment
+) 
+VALUES 
+(
+    5aaf007f-d05e-4ef6-8dc0-b56c68181176, 
+    ddcd8e6a-56fb-11ee-9987-325096b39f47, 
+    d3abfbff-e348-468f-a458-b04f2ca98374,
+    'Commento 2'
+);
+INSERT INTO comments_by_video
+(
+    videoid, 
+    commentid, 
+    userid, 
+    comment
+) 
+VALUES 
+(
+    d3abfbff-e348-468f-a458-b04f2ca98374,
+    ddcd8e6a-56fb-11ee-9987-325096b39f47,
+    5aaf007f-d05e-4ef6-8dc0-b56c68181176,
+    'Commento 2'
+);
+APPLY BATCH;
+
+SELECT * FROM comments_by_user WHERE userid=5aaf007f-d05e-4ef6-8dc0-b56c68181176;
+
+SELECT * FROM comments_by_video WHERE videoid=d3abfbff-e348-468f-a458-b04f2ca98374;
